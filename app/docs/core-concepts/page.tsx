@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function CoreConceptsPage() {
   return (
@@ -66,10 +66,13 @@ export default function CoreConceptsPage() {
           <div className="not-prose">
             <Card className="mb-6">
               <CardContent className="p-4">
-                <img
-                  src="/placeholder.svg?height=300&width=800"
-                  alt="Transaction Execution Flow"
-                  className="w-full rounded-md"
+                <video
+                  src="/visuals/EVM-flow.mp4"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full rounded-lg"
                 />
               </CardContent>
             </Card>
@@ -135,9 +138,9 @@ export default function CoreConceptsPage() {
           <h2 id="memory">Memory</h2>
           <p>
             Memory is a volatile, byte-addressable space that exists only during
-            contract execution. It&apos;s used for temporary storage and is wiped
-            after execution completes. Memory can be accessed in 32-byte chunks
-            using MLOAD and MSTORE operations.
+            contract execution. It&apos;s used for temporary storage and is
+            wiped after execution completes. Memory can be accessed in 32-byte
+            chunks using MLOAD and MSTORE operations.
           </p>
 
           <p>
@@ -148,10 +151,10 @@ export default function CoreConceptsPage() {
 
           <h2 id="storage">Storage</h2>
           <p>
-            Storage is persistent and remains after execution. It&apos;s a key-value
-            store where both keys and values are 256 bits wide. Storage is
-            expensive to use (in terms of gas) but necessary for maintaining
-            state between transactions.
+            Storage is persistent and remains after execution. It&apos;s a
+            key-value store where both keys and values are 256 bits wide.
+            Storage is expensive to use (in terms of gas) but necessary for
+            maintaining state between transactions.
           </p>
 
           <p>Storage operations include:</p>
@@ -218,8 +221,8 @@ export default function CoreConceptsPage() {
               is processed only once.
             </li>
             <li>
-              <strong>Code Hash</strong>: The hash of the account&apos;s code (empty
-              for EOAs).
+              <strong>Code Hash</strong>: The hash of the account&apos;s code
+              (empty for EOAs).
             </li>
             <li>
               <strong>Storage Root</strong>: The root hash of the account&apos;s
@@ -295,4 +298,3 @@ export default function CoreConceptsPage() {
     </div>
   );
 }
-

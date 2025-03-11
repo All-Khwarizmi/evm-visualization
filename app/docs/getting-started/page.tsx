@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { HeroDemo } from "@/components/hero-demo";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function GettingStartedPage() {
+  const dashboardUrl = `${window.location.protocol}//${window.location.host}/dashboard`;
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -44,8 +46,8 @@ export default function GettingStartedPage() {
             The EVM Visualizer is a web-based application that you can access
             directly in your browser. No installation is required. Simply visit
             the application at{" "}
-            <a href="https://evm-visualizer.example.com">
-              https://evm-visualizer.example.com
+            <a href={dashboardUrl} target="_blank">
+              {dashboardUrl}
             </a>{" "}
             (or use the &quot;Launch Visualizer&quot; button on the homepage).
           </p>
@@ -117,15 +119,7 @@ export default function GettingStartedPage() {
           </ul>
 
           <div className="not-prose">
-            <Card className="mb-6">
-              <CardContent className="p-4">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Capture%20d%E2%80%99e%CC%81cran%202025-03-10%20a%CC%80%2018.43.07-ymWPCoozDykZ5GfQTOxEHFjjtwFBC7.png"
-                  alt="EVM Visualizer Interface"
-                  className="w-full rounded-md"
-                />
-              </CardContent>
-            </Card>
+            <HeroDemo />
           </div>
 
           <h2 id="using-the-visualizer">Using the Visualizer</h2>
@@ -235,8 +229,8 @@ export default function GettingStartedPage() {
               view detailed information about their current state
             </li>
             <li>
-              Use the &quot;Reset&quot; button to start over, or load a different scenario
-              to explore other aspects of EVM execution
+              Use the &quot;Reset&quot; button to start over, or load a
+              different scenario to explore other aspects of EVM execution
             </li>
           </ol>
 
@@ -295,4 +289,3 @@ export default function GettingStartedPage() {
     </div>
   );
 }
-
