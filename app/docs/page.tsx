@@ -137,11 +137,11 @@ export default function DocsPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button disabled asChild variant="outline" className="w-full">
-                    <Link href="/docs/advanced-usage">
+                  <Button disabled  variant="outline" className="w-full">
+                    {/* <Link href="/docs/advanced-usage"> */}
                       View Advanced Usage
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
+                    {/* </Link> */}
                   </Button>
                 </CardFooter>
               </Card>
@@ -172,7 +172,7 @@ export default function DocsPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="outline" className="w-full">
-                    <Link href="/docs/integration-guide">
+                    <Link href="/docs/examples/custom-scenarios">
                       Read Integration Guide
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
