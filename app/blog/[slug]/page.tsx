@@ -171,8 +171,8 @@ export default async function BlogPostPage({
                   </Link>
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400">
-                  A beginner's guide to using the EVM Visualizer to understand
-                  Ethereum transactions.
+                  A beginner&apos;s guide to using the EVM Visualizer to
+                  understand Ethereum transactions.
                 </p>
               </div>
             </div>

@@ -141,9 +141,9 @@ export function CallStackVisualization({
                 prevent stack overflow attacks.
               </p>
               <p className="mt-1">
-                This simple transaction only has a single call from the sender's
-                account to the recipient, but more complex smart contract
-                interactions can have deeply nested calls.
+                This simple transaction only has a single call from the
+                sender&apos;s account to the recipient, but more complex smart
+                contract interactions can have deeply nested calls.
               </p>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import {  useState } from "react";
 
 // Sample opcode data
 const opcodes = [
