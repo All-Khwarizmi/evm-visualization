@@ -45,7 +45,7 @@ import { CallStackVisualization } from "@/components/call-stack-visualization"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ScenarioSelector } from "@/components/scenario-selector"
 
-export default function EVMVisualizationDashboard() {
+export default function EVMVisualizationDashboard() { 
   const [activeTab, setActiveTab] = useState("transaction")
   const [isPanelOpen, setIsPanelOpen] = useState(true)
   const [executionSpeed, setExecutionSpeed] = useState(1000) // Default 1 second

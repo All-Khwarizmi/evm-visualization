@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -12,36 +12,43 @@ import ReactFlow, {
   useEdgesState,
   ConnectionLineType,
   Panel,
-} from "reactflow"
-import "reactflow/dist/style.css"
-import type { EVMTransaction, EVMStack, EVMMemory, EVMStorage, EVMWorldState } from "@/types/evm"
-import { StackNode } from "./custom-nodes/stack-node"
-import { MemoryNode } from "./custom-nodes/memory-node"
-import { StorageNode } from "./custom-nodes/storage-node"
-import { TransactionNode } from "./custom-nodes/transaction-node"
-import { WorldStateNode } from "./custom-nodes/world-state-node"
-import { OpcodeNode } from "./custom-nodes/opcode-node"
-import { ProgramCounterNode } from "./custom-nodes/program-counter-node"
-import { Button } from "@/components/ui/button"
-import { ZoomIn } from "lucide-react"
-import { NodeInfoModal } from "./ui/node-info-modal"
-import { TransactionDetails } from "./transaction-details"
-import { StackDetails } from "./stack-details"
-import { MemoryDetails } from "./memory-details"
-import { StorageDetails } from "./storage-details"
-import { WorldStateDetails } from "./world-state-details"
-import { ExecutionDetails } from "./execution-details"
+} from "reactflow";
+import "reactflow/dist/style.css";
+import type {
+  EVMTransaction,
+  EVMStack,
+  EVMMemory,
+  EVMStorage,
+  EVMWorldState,
+} from "@/types/evm";
+import { StackNode } from "./custom-nodes/stack-node";
+import { MemoryNode } from "./custom-nodes/memory-node";
+import { StorageNode } from "./custom-nodes/storage-node";
+import { TransactionNode } from "./custom-nodes/transaction-node";
+import { WorldStateNode } from "./custom-nodes/world-state-node";
+import { OpcodeNode } from "./custom-nodes/opcode-node";
+import { ProgramCounterNode } from "./custom-nodes/program-counter-node";
+import { Button } from "@/components/ui/button";
+import { ZoomIn } from "lucide-react";
+import { NodeInfoModal } from "./ui/node-info-modal";
+import { TransactionDetails } from "./transaction-details";
+import { StackDetails } from "./stack-details";
+import { MemoryDetails } from "./memory-details";
+import { StorageDetails } from "./storage-details";
+import { WorldStateDetails } from "./world-state-details";
+import { ExecutionDetails } from "./execution-details";
+import { ReactFlowInstance } from "reactflow";
 
 interface EVMCanvasProps {
-  transaction: EVMTransaction
-  stack: EVMStack
-  memory: EVMMemory
-  storage: EVMStorage
-  worldState: EVMWorldState
-  currentStep: number
-  currentOpcode: string
-  gasUsed: number
-  gasRemaining: number
+  transaction: EVMTransaction;
+  stack: EVMStack;
+  memory: EVMMemory;
+  storage: EVMStorage;
+  worldState: EVMWorldState;
+  currentStep: number;
+  currentOpcode: string;
+  gasUsed: number;
+  gasRemaining: number;
 }
 
 // Define custom node types
@@ -53,7 +60,7 @@ const nodeTypes = {
   worldState: WorldStateNode,
   opcode: OpcodeNode,
   programCounter: ProgramCounterNode,
-}
+};
 
 export function EVMCanvas({
   transaction,
@@ -68,16 +75,16 @@ export function EVMCanvas({
 }: EVMCanvasProps) {
   // State for node info modal
   const [modalInfo, setModalInfo] = useState<{
-    isOpen: boolean
-    title: string
-    description: string
-    content: React.ReactNode
+    isOpen: boolean;
+    title: string;
+    description: string;
+    content: React.ReactNode;
   }>({
     isOpen: false,
     title: "",
     description: "",
     content: null,
-  })
+  });
 
   // Create initial nodes with more spacing
   const initialNodes: Node[] = [
@@ -182,7 +189,7 @@ export function EVMCanvas({
       sourcePosition: Position.Left,
       draggable: true,
     },
-  ]
+  ];
 
   // Create initial edges with more descriptive labels
   const initialEdges: Edge[] = [
@@ -343,53 +350,63 @@ export function EVMCanvas({
         color: "#22c55e",
       },
     },
-  ]
+  ];
 
   // Use React Flow hooks to manage nodes and edges
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
-  const [reactFlowInstance, setReactFlowInstance] = useState(null)
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [reactFlowInstance, setReactFlowInstance] =
+    useState<ReactFlowInstance | null>(null);
 
   // Handle node click to show detailed information
   const handleNodeClick = (nodeId: string) => {
-    let title = ""
-    let description = ""
-    let content: React.ReactNode = null
+    let title = "";
+    let description = "";
+    let content: React.ReactNode = null;
 
     switch (nodeId) {
       case "transaction":
-        title = "Transaction"
-        description = "Ethereum transactions initiate state changes in the blockchain"
-        content = <TransactionDetails transaction={transaction} />
-        break
+        title = "Transaction";
+        description =
+          "Ethereum transactions initiate state changes in the blockchain";
+        content = <TransactionDetails transaction={transaction} />;
+        break;
       case "stack":
-        title = "Stack"
-        description = "Last-in, first-out data structure for EVM operations"
-        content = <StackDetails stack={stack} />
-        break
+        title = "Stack";
+        description = "Last-in, first-out data structure for EVM operations";
+        content = <StackDetails stack={stack} />;
+        break;
       case "memory":
-        title = "Memory"
-        description = "Temporary byte-addressable memory for the current execution"
-        content = <MemoryDetails memory={memory} />
-        break
+        title = "Memory";
+        description =
+          "Temporary byte-addressable memory for the current execution";
+        content = <MemoryDetails memory={memory} />;
+        break;
       case "storage":
-        title = "Storage"
-        description = "Persistent key-value store for contract state"
-        content = <StorageDetails storage={storage} />
-        break
+        title = "Storage";
+        description = "Persistent key-value store for contract state";
+        content = <StorageDetails storage={storage} />;
+        break;
       case "worldState":
-        title = "World State"
-        description = "Global state of all accounts and contracts on the blockchain"
-        content = <WorldStateDetails worldState={worldState} />
-        break
+        title = "World State";
+        description =
+          "Global state of all accounts and contracts on the blockchain";
+        content = <WorldStateDetails worldState={worldState} />;
+        break;
       case "opcode":
-        title = "Opcode Execution"
-        description = "Current instruction being executed by the EVM"
-        content = <ExecutionDetails currentOpcode={currentOpcode} gasUsed={gasUsed} gasRemaining={gasRemaining} />
-        break
+        title = "Opcode Execution";
+        description = "Current instruction being executed by the EVM";
+        content = (
+          <ExecutionDetails
+            currentOpcode={currentOpcode}
+            gasUsed={gasUsed}
+            gasRemaining={gasRemaining}
+          />
+        );
+        break;
       case "programCounter":
-        title = "Program Counter"
-        description = "Points to the current instruction in the bytecode"
+        title = "Program Counter";
+        description = "Points to the current instruction in the bytecode";
         content = (
           <div className="space-y-4">
             <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-md">
@@ -451,9 +468,9 @@ export function EVMCanvas({
             </div>
           </div>
         );
-        break
+        break;
       default:
-        return
+        return;
     }
 
     setModalInfo({
@@ -461,8 +478,8 @@ export function EVMCanvas({
       title,
       description,
       content,
-    })
-  }
+    });
+  };
 
   // Update nodes when props change
   const updateNodes = useCallback(() => {
@@ -473,34 +490,34 @@ export function EVMCanvas({
             transaction,
             isActive: currentStep > 0,
             onClick: () => handleNodeClick("transaction"),
-          }
+          };
         } else if (node.id === "worldState") {
           node.data = {
             worldState,
             isActive: currentStep > 7,
             onClick: () => handleNodeClick("worldState"),
-          }
+          };
         } else if (node.id === "stack") {
           node.data = {
             stack,
             step: currentStep,
             isActive: currentStep >= 1 && currentStep <= 5,
             onClick: () => handleNodeClick("stack"),
-          }
+          };
         } else if (node.id === "memory") {
           node.data = {
             memory,
             step: currentStep,
             isActive: currentStep >= 3 && currentStep <= 4,
             onClick: () => handleNodeClick("memory"),
-          }
+          };
         } else if (node.id === "storage") {
           node.data = {
             storage,
             step: currentStep,
             isActive: currentStep >= 6 && currentStep <= 8,
             onClick: () => handleNodeClick("storage"),
-          }
+          };
         } else if (node.id === "opcode") {
           node.data = {
             opcode: currentOpcode,
@@ -508,60 +525,79 @@ export function EVMCanvas({
             step: currentStep,
             isActive: currentStep > 0 && currentStep <= 6,
             onClick: () => handleNodeClick("opcode"),
-          }
+          };
         } else if (node.id === "programCounter") {
           node.data = {
             pc: currentStep > 0 ? currentStep * 2 : 0,
             step: currentStep,
             isActive: currentStep > 1,
             onClick: () => handleNodeClick("programCounter"),
-          }
+          };
         }
-        return node
-      }),
-    )
-  }, [transaction, worldState, stack, memory, storage, currentOpcode, currentStep, setNodes])
+        return node;
+      })
+    );
+  }, [
+    transaction,
+    worldState,
+    stack,
+    memory,
+    storage,
+    currentOpcode,
+    currentStep,
+    setNodes,
+  ]);
 
   // Update edges when currentStep changes
   const updateEdges = useCallback(() => {
     setEdges((eds) =>
       eds.map((edge) => {
         if (edge.id === "transaction-worldState") {
-          edge.animated = currentStep > 0 && currentStep <= 10
+          edge.animated = currentStep > 0 && currentStep <= 10;
         } else if (edge.id === "transaction-opcode") {
-          edge.animated = currentStep > 0 && currentStep <= 2
+          edge.animated = currentStep > 0 && currentStep <= 2;
         } else if (edge.id === "opcode-programCounter") {
-          edge.animated = currentStep > 1 && currentStep <= 3
+          edge.animated = currentStep > 1 && currentStep <= 3;
         } else if (edge.id === "opcode-stack") {
-          edge.animated = currentStep > 1 && currentStep <= 3
+          edge.animated = currentStep > 1 && currentStep <= 3;
         } else if (edge.id === "opcode-memory") {
-          edge.animated = currentStep > 2 && currentStep <= 4
+          edge.animated = currentStep > 2 && currentStep <= 4;
         } else if (edge.id === "opcode-storage") {
-          edge.animated = currentStep > 3 && currentStep <= 6
+          edge.animated = currentStep > 3 && currentStep <= 6;
         } else if (edge.id === "storage-worldState") {
-          edge.animated = currentStep > 6 && currentStep <= 8
+          edge.animated = currentStep > 6 && currentStep <= 8;
         } else if (edge.id === "stack-memory") {
-          edge.animated = currentStep > 2 && currentStep <= 4
+          edge.animated = currentStep > 2 && currentStep <= 4;
         } else if (edge.id === "memory-storage") {
-          edge.animated = currentStep > 4 && currentStep <= 6
+          edge.animated = currentStep > 4 && currentStep <= 6;
         }
-        return edge
-      }),
-    )
-  }, [currentStep, setEdges])
+        return edge;
+      })
+    );
+  }, [currentStep, setEdges]);
 
   // Update nodes and edges when props change
   React.useEffect(() => {
-    updateNodes()
-    updateEdges()
-  }, [updateNodes, updateEdges, transaction, worldState, stack, memory, storage, currentOpcode, currentStep])
+    updateNodes();
+    updateEdges();
+  }, [
+    updateNodes,
+    updateEdges,
+    transaction,
+    worldState,
+    stack,
+    memory,
+    storage,
+    currentOpcode,
+    currentStep,
+  ]);
 
   // Function to fit view
   const fitView = () => {
     if (reactFlowInstance) {
-      reactFlowInstance.fitView({ padding: 0.2 })
+      reactFlowInstance.fitView({ padding: 0.2 });
     }
-  }
+  };
 
   return (
     <div className="w-full h-full">
@@ -589,9 +625,17 @@ export function EVMCanvas({
         <Controls className="dark:bg-slate-800 dark:text-white" />
 
         {/* Add a panel with fit view button */}
-        <Panel position="top-right" className="bg-white dark:bg-slate-800 p-2 rounded-md shadow-md">
+        <Panel
+          position="top-right"
+          className="bg-white dark:bg-slate-800 p-2 rounded-md shadow-md"
+        >
           <div className="flex flex-col gap-2">
-            <Button variant="outline" size="sm" onClick={fitView} className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={fitView}
+              className="flex items-center gap-1"
+            >
               <ZoomIn className="h-4 w-4" />
               <span>Fit View</span>
             </Button>
@@ -611,6 +655,5 @@ export function EVMCanvas({
         onClose={() => setModalInfo({ ...modalInfo, isOpen: false })}
       />
     </div>
-  )
+  );
 }
-
