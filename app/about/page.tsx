@@ -1,6 +1,6 @@
-import { Github, Linkedin, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Github, Linkedin, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -85,14 +85,18 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-card rounded-lg p-6 border border-border">
-                <h3 className="text-xl font-medium mb-2">LaClasse.app</h3>
+                <h3 className="text-xl font-medium mb-2">Agent Dex</h3>
                 <p className="text-muted-foreground mb-4">
-                  Educational platform built with React and TypeScript, focusing
-                  on interactive learning experiences.
+                  AgentDEX is a decentralized exchange that combines traditional
+                  DEX functionality with an AI agent interface for a more
+                  intuitive trading experience.
                 </p>
-                <Link href="https://www.laclasse.app/" target="_blank">
+                <Link
+                  href="https://github.com/All-Khwarizmi/agent-dex"
+                  target="_blank"
+                >
                   <Button variant="secondary" size="sm">
-                    Visit Site
+                    View Project
                   </Button>
                 </Link>
               </div>
@@ -107,15 +111,15 @@ export default function AboutPage() {
                 <h3 className="font-medium">Blockchain</h3>
                 <ul className="text-sm text-muted-foreground">
                   <li>Solidity</li>
-                  <li>Smart Contracts</li>
-                  <li>ERC20/721</li>
+                  <li>Gas Optimization</li>
+                  <li>Security</li>
                 </ul>
               </div>
               <div className="space-y-2">
                 <h3 className="font-medium">Web3</h3>
                 <ul className="text-sm text-muted-foreground">
-                  <li>ethers.js</li>
-                  <li>Hardhat</li>
+                  <li>Wagmi</li>
+                  <li>Foundry</li>
                 </ul>
               </div>
               <div className="space-y-2">
@@ -129,8 +133,9 @@ export default function AboutPage() {
               <div className="space-y-2">
                 <h3 className="font-medium">AI</h3>
                 <ul className="text-sm text-muted-foreground">
-                  <li>TensorFlow</li>
-                  <li>Python</li>
+                  <li>Agents</li>
+                  <li>Blockchain capability</li>
+                  <li>Chat Bots</li>
                 </ul>
               </div>
             </div>
@@ -140,4 +145,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

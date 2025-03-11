@@ -185,7 +185,7 @@ export function ScenarioSelector({ onSelectScenario, currentScenario }: Scenario
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <ScenarioBuilderDialog onSaveScenario={handleSaveScenario} />
+      {/* <ScenarioBuilderDialog onSaveScenario={handleSaveScenario} /> */}
     </div>
   )
 }

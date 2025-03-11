@@ -6,7 +6,7 @@ import "./globals.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evm-visualization.vercel.app"),
+  metadataBase: new URL("https://evm-visualizer.vercel.app"),
   title: {
     template: "%s | EVM Visualizer",
     default:
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     },
     description:
       "An interactive visualization tool that reveals how the Ethereum Virtual Machine executes transactions and smart contracts, helping developers understand complex blockchain operations.",
-    url: "https://evm-visualization.vercel.app",
+    url: "https://evm-visualizer.vercel.app",
     siteName: "EVM Visualizer",
     images: [
       {
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
     description:
       "See inside the Ethereum Virtual Machine with this interactive visualization tool that shows how transactions and smart contracts execute step by step.",
     images: ["/images/og-image.png"],
-    creator: "@YourTwitterHandle",
-    site: "@EVMVisualizer",
+    creator: "@swarecito",
+    site: "@swarecito",
   },
   robots: {
     index: true,

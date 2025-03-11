@@ -428,28 +428,7 @@ export default function DocsPage() {
               </div>
             </div>
 
-            <div className="border-l-4 border-purple-500 pl-4 py-1">
-              <h3 className="font-medium text-lg">
-                New DeFi Transaction Examples
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Added examples for Uniswap V3 swaps and Aave flash loans with
-                detailed execution breakdowns.
-              </p>
-              <div className="flex items-center mt-2 text-sm">
-                <span className="text-slate-500 dark:text-slate-400">
-                  Updated 1 week ago
-                </span>
-                <Button
-                  asChild
-                  variant="link"
-                  size="sm"
-                  className="h-auto p-0 ml-4"
-                >
-                  <Link href="/docs/examples/defi-transactions">Read more</Link>
-                </Button>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

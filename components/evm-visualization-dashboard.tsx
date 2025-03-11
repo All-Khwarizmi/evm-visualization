@@ -236,15 +236,7 @@ export default function EVMVisualizationDashboard() {
                 currentScenario={currentScenario}
               />
 
-              <Button variant="outline" size="sm">
-                <Info className="h-4 w-4 mr-2" />
-                About
-              </Button>
-
-              <Button variant="outline" size="sm">
-                <Code className="h-4 w-4 mr-2" />
-                Examples
-              </Button>
+        
             </div>
           </div>
         </div>
