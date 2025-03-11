@@ -252,15 +252,6 @@ export default function CoreConceptsPage() {
           <ul>
             <li>
               <Link
-                href="/docs/advanced-usage"
-                className="text-purple-600 dark:text-purple-400 hover:underline"
-              >
-                Advanced Usage
-              </Link>{" "}
-              - Learn about more complex EVM features and interactions.
-            </li>
-            <li>
-              <Link
                 href="/docs/reference/opcodes"
                 className="text-purple-600 dark:text-purple-400 hover:underline"
               >
@@ -270,12 +261,23 @@ export default function CoreConceptsPage() {
             </li>
             <li>
               <Link
-                href="/docs/examples/basic-transactions"
+                href="/docs/developer-guide"
                 className="text-purple-600 dark:text-purple-400 hover:underline"
               >
-                Basic Transaction Examples
+                Developer Guide
               </Link>{" "}
-              - See the EVM in action with simple examples.
+              - Learn how to extend, customize, and contribute to the EVM
+              Visualizer project.
+            </li>
+
+            <li>
+              <Link
+                href="/docs/examples/custom-scenarios"
+                className="text-purple-600 dark:text-purple-400 hover:underline"
+              >
+                Custom Scenarios
+              </Link>{" "}
+              - Learn how to create your own scenarios.
             </li>
           </ul>
 
@@ -287,8 +289,8 @@ export default function CoreConceptsPage() {
               </Link>
             </Button>
             <Button asChild>
-              <Link href="/docs/advanced-usage">
-                Next: Advanced Usage
+              <Link href="/docs/reference/opcodes">
+                Next: Opcode Reference
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ChevronRight, Search } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowLeft, ChevronRight, Search } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { use, useState } from "react";
 
 // Sample opcode data
 const opcodes = [
@@ -64,45 +65,58 @@ const opcodes = [
     stackEffect: "-2",
     example: "JUMPI",
   },
-]
+];
 
 export default function OpcodesPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const router = useRouter();
 
   // Filter opcodes based on search term and category
   const filteredOpcodes = opcodes.filter((opcode) => {
     const matchesSearch =
       opcode.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      opcode.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "all" || opcode.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
+      opcode.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || opcode.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   // Get unique categories
-  const categories = ["all", ...Array.from(new Set(opcodes.map((opcode) => opcode.category)))]
+  const categories = [
+    "all",
+    ...Array.from(new Set(opcodes.map((opcode) => opcode.category))),
+  ];
 
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-4">
-          <Link href="/docs" className="hover:text-slate-900 dark:hover:text-slate-200">
+          <Link
+            href="/docs"
+            className="hover:text-slate-900 dark:hover:text-slate-200"
+          >
             Docs
           </Link>
           <ChevronRight className="h-4 w-4 mx-1" />
-          <Link href="/docs/reference" className="hover:text-slate-900 dark:hover:text-slate-200">
+          <Link
+            href="/docs/reference"
+            className="hover:text-slate-900 dark:hover:text-slate-200"
+          >
             Reference
           </Link>
           <ChevronRight className="h-4 w-4 mx-1" />
           <span>Opcodes</span>
         </div>
 
-        <h1 className="text-4xl font-bold tracking-tight mb-6">EVM Opcode Reference</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-6">
+          EVM Opcode Reference
+        </h1>
 
         <div className="prose dark:prose-invert max-w-none mb-10">
           <p className="lead text-xl text-slate-600 dark:text-slate-400">
-            Comprehensive reference of all Ethereum Virtual Machine (EVM) opcodes, their gas costs, stack effects, and
-            usage examples.
+            Comprehensive reference of all Ethereum Virtual Machine (EVM)
+            opcodes, their gas costs, stack effects, and usage examples.
           </p>
 
           <div className="not-prose mb-8">
@@ -116,10 +130,18 @@ export default function OpcodesPage() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full sm:w-auto">
+              <Tabs
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+                className="w-full sm:w-auto"
+              >
                 <TabsList>
                   {categories.map((category) => (
-                    <TabsTrigger key={category} value={category} className="capitalize">
+                    <TabsTrigger
+                      key={category}
+                      value={category}
+                      className="capitalize"
+                    >
                       {category}
                     </TabsTrigger>
                   ))}
@@ -152,23 +174,38 @@ export default function OpcodesPage() {
                     <CardContent>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <h3 className="text-sm font-medium mb-1">Description</h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400">{opcode.description}</p>
+                          <h3 className="text-sm font-medium mb-1">
+                            Description
+                          </h3>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                            {opcode.description}
+                          </p>
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium mb-1">Stack Effect</h3>
-                          <p className="text-sm font-mono">{opcode.stackEffect}</p>
-                          <h3 className="text-sm font-medium mt-3 mb-1">Example</h3>
+                          <h3 className="text-sm font-medium mb-1">
+                            Stack Effect
+                          </h3>
+                          <p className="text-sm font-mono">
+                            {opcode.stackEffect}
+                          </p>
+                          <h3 className="text-sm font-medium mt-3 mb-1">
+                            Example
+                          </h3>
                           <p className="text-sm font-mono bg-slate-100 dark:bg-slate-800 p-2 rounded">
                             {opcode.example}
                           </p>
                         </div>
                       </div>
                       <div className="mt-4 text-right">
-                        <Button asChild variant="link" size="sm" className="h-auto p-0">
-                          <Link href={`/docs/reference/opcodes/${opcode.name.toLowerCase()}`}>
-                            View detailed documentation
-                          </Link>
+                        <Button
+                          disabled
+                          variant="link"
+                          size="sm"
+                          className="h-auto p-0"
+                        >
+                          {/* <Link href={`/docs/reference/opcodes/${opcode.name.toLowerCase()}`}> */}
+                          View detailed documentation
+                          {/* </Link> */}
                         </Button>
                       </div>
                     </CardContent>
@@ -176,23 +213,27 @@ export default function OpcodesPage() {
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <p className="text-slate-500 dark:text-slate-400">No opcodes found matching your criteria.</p>
+                  <p className="text-slate-500 dark:text-slate-400">
+                    No opcodes found matching your criteria.
+                  </p>
                 </div>
               )}
             </div>
           </div>
 
           <div className="not-prose mt-10">
-            <Button asChild variant="outline">
-              <Link href="/docs/reference">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Reference
-              </Link>
+            <Button
+              onClick={() => {
+                router.back();
+              }}
+              variant="outline"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Go Back
             </Button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

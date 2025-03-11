@@ -1,13 +1,22 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Book, Code, Cpu, FileText, Layers, Rocket, ChevronRight } from "lucide-react"
-import Link from "next/link"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { HeroDemo } from "@/components/hero-demo"
-import { motion } from "framer-motion"
+import type React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Book,
+  Code,
+  Cpu,
+  FileText,
+  Layers,
+  Rocket,
+  ChevronRight,
+} from "lucide-react";
+import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { HeroDemo } from "@/components/hero-demo";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
@@ -38,16 +47,28 @@ export default function HomePage() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-              <Link href="/" className="text-purple-500 transition-colors hover:text-purple-400">
+              <Link
+                href="/"
+                className="text-purple-500 transition-colors hover:text-purple-400"
+              >
                 Home
               </Link>
-              <Link href="/docs" className="text-slate-300 transition-colors hover:text-purple-400">
+              <Link
+                href="/docs"
+                className="text-slate-300 transition-colors hover:text-purple-400"
+              >
                 Documentation
               </Link>
-              <Link href="/blog" className="text-slate-300 transition-colors hover:text-purple-400">
+              <Link
+                href="/blog"
+                className="text-slate-300 transition-colors hover:text-purple-400"
+              >
                 Blog
               </Link>
-              <Link href="/examples" className="text-slate-300 transition-colors hover:text-purple-400">
+              <Link
+                href="/examples"
+                className="text-slate-300 transition-colors hover:text-purple-400"
+              >
                 Examples
               </Link>
             </nav>
@@ -56,7 +77,12 @@ export default function HomePage() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
 
-            <Button asChild variant="default" size="sm" className="hidden md:flex">
+            <Button
+              asChild
+              variant="default"
+              size="sm"
+              className="hidden md:flex"
+            >
               <Link href="/dashboard">
                 Launch Visualizer
                 <ChevronRight className="ml-1 h-4 w-4" />
@@ -66,12 +92,19 @@ export default function HomePage() {
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="md:hidden border-slate-700">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="md:hidden border-slate-700"
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[80%] sm:w-[350px] bg-slate-900 border-slate-800">
+              <SheetContent
+                side="right"
+                className="w-[80%] sm:w-[350px] bg-slate-900 border-slate-800"
+              >
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between border-b border-slate-800 py-4">
                     <Link href="/" className="flex items-center gap-2">
@@ -154,13 +187,17 @@ export default function HomePage() {
           <div className="container px-4 md:px-6 mx-auto relative">
             {/* Content above demo */}
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200 mb-6">
                   Visualize the Ethereum Virtual Machine
                 </h1>
                 <p className="text-slate-300 md:text-xl mb-8">
-                  An interactive tool to understand how the EVM executes smart contracts, processes transactions, and
-                  manages state.
+                  An interactive tool to understand how the EVM executes smart
+                  contracts, processes transactions, and manages state.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Button
@@ -213,7 +250,8 @@ export default function HomePage() {
                   Key Features
                 </h2>
                 <p className="max-w-[900px] text-slate-300 md:text-xl">
-                  Explore the inner workings of the Ethereum Virtual Machine with our interactive visualization tool.
+                  Explore the inner workings of the Ethereum Virtual Machine
+                  with our interactive visualization tool.
                 </p>
               </motion.div>
             </div>
@@ -231,10 +269,13 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg bg-purple-900/50 flex items-center justify-center mb-4">
                     <Cpu className="h-6 w-6 text-purple-400" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Interactive Visualization</h3>
+                  <h3 className="text-xl font-bold mb-2">
+                    Interactive Visualization
+                  </h3>
                   <p className="text-slate-300">
-                    See how transactions flow through the EVM with real-time, interactive visualizations. Watch as data
-                    moves between stack, memory, and storage during contract execution.
+                    See how transactions flow through the EVM with real-time,
+                    interactive visualizations. Watch as data moves between
+                    stack, memory, and storage during contract execution.
                   </p>
                 </div>
               </motion.div>
@@ -251,10 +292,13 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg bg-blue-900/50 flex items-center justify-center mb-4">
                     <Layers className="h-6 w-6 text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Step-by-Step Execution</h3>
+                  <h3 className="text-xl font-bold mb-2">
+                    Step-by-Step Execution
+                  </h3>
                   <p className="text-slate-300">
-                    Walk through EVM operations one instruction at a time to understand the execution flow. Understand
-                    how each opcode affects the EVM state and how gas is consumed.
+                    Walk through EVM operations one instruction at a time to
+                    understand the execution flow. Understand how each opcode
+                    affects the EVM state and how gas is consumed.
                   </p>
                 </div>
               </motion.div>
@@ -273,8 +317,9 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-xl font-bold mb-2">Custom Scenarios</h3>
                   <p className="text-slate-300">
-                    Create and visualize your own transaction scenarios for educational or debugging purposes. Load
-                    custom transactions and smart contracts to see how they execute.
+                    Create and visualize your own transaction scenarios for
+                    educational or debugging purposes. Load custom transactions
+                    and smart contracts to see how they execute.
                   </p>
                 </div>
               </motion.div>
@@ -299,7 +344,8 @@ export default function HomePage() {
                   Comprehensive Documentation
                 </h2>
                 <p className="text-slate-300 md:text-xl mb-8">
-                  Explore our detailed guides, references, and examples to deepen your understanding of the EVM.
+                  Explore our detailed guides, references, and examples to
+                  deepen your understanding of the EVM.
                 </p>
                 <Button
                   asChild
@@ -326,7 +372,8 @@ export default function HomePage() {
                       <Book className="h-8 w-8 text-purple-400 mb-4" />
                       <h3 className="text-xl font-bold mb-2">Guides</h3>
                       <p className="text-slate-300 mb-4">
-                        Step-by-step tutorials to help you get started with the EVM Visualizer.
+                        Step-by-step tutorials to help you get started with the
+                        EVM Visualizer.
                       </p>
                       <Link
                         href="/docs/getting-started"
@@ -344,7 +391,8 @@ export default function HomePage() {
                       <FileText className="h-8 w-8 text-blue-400 mb-4" />
                       <h3 className="text-xl font-bold mb-2">Reference</h3>
                       <p className="text-slate-300 mb-4">
-                        Detailed documentation of EVM opcodes, gas costs, and architecture.
+                        Detailed documentation of EVM opcodes, gas costs, and
+                        architecture.
                       </p>
                       <Link
                         href="/docs/reference/opcodes"
@@ -362,7 +410,8 @@ export default function HomePage() {
                       <Rocket className="h-8 w-8 text-indigo-400 mb-4" />
                       <h3 className="text-xl font-bold mb-2">Examples</h3>
                       <p className="text-slate-300 mb-4">
-                        Real-world examples of EVM transactions and smart contract executions.
+                        Real-world examples of EVM transactions and smart
+                        contract executions.
                       </p>
                       <Link
                         href="/docs/examples/basic-transactions"
@@ -378,9 +427,12 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl opacity-30 blur-[2px]"></div>
                     <div className="relative p-6 bg-slate-900/90 backdrop-blur-sm rounded-lg h-full border border-slate-800/50">
                       <Code className="h-8 w-8 text-cyan-400 mb-4" />
-                      <h3 className="text-xl font-bold mb-2">Developer Guide</h3>
+                      <h3 className="text-xl font-bold mb-2">
+                        Developer Guide
+                      </h3>
                       <p className="text-slate-300 mb-4">
-                        Learn how to extend and customize the EVM Visualizer for your own projects.
+                        Learn how to extend and customize the EVM Visualizer for
+                        your own projects.
                       </p>
                       <Link
                         href="/docs/developer-guide"
@@ -418,7 +470,8 @@ export default function HomePage() {
                     Ready to Dive In?
                   </h2>
                   <p className="max-w-[600px] mx-auto text-slate-300 md:text-xl mb-8">
-                    Start exploring the Ethereum Virtual Machine with our interactive visualization tool.
+                    Start exploring the Ethereum Virtual Machine with our
+                    interactive visualization tool.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
@@ -454,17 +507,21 @@ export default function HomePage() {
               © {new Date().getFullYear()} EVM Visualizer. All rights reserved.
             </div>
             <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-              <Link href="/docs" className="text-slate-500 hover:text-slate-300">
+              <Link
+                href="/docs"
+                className="text-slate-500 hover:text-slate-300"
+              >
                 Documentation
               </Link>
-              <Link href="/blog" className="text-slate-500 hover:text-slate-300">
+              <Link
+                href="/blog"
+                className="text-slate-500 hover:text-slate-300"
+              >
                 Blog
               </Link>
-              <Link href="/examples" className="text-slate-500 hover:text-slate-300">
-                Examples
-              </Link>
+
               <Link
-                href="https://github.com/yourusername/evm-visualizer"
+                href="https://github.com/All-Khwarizmi/evm-visualization"
                 className="text-slate-500 hover:text-slate-300"
               >
                 GitHub
@@ -474,7 +531,7 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 function Menu(props: React.SVGProps<SVGSVGElement>) {
@@ -495,6 +552,5 @@ function Menu(props: React.SVGProps<SVGSVGElement>) {
       <line x1="4" x2="20" y1="6" y2="6" />
       <line x1="4" x2="20" y1="18" y2="18" />
     </svg>
-  )
+  );
 }
-

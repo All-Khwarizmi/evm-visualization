@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ArrowRight, ChevronRight, Copy } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowLeft, ArrowRight, ChevronRight, Copy } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CustomScenariosPage() {
-  const [copied, setCopied] = useState(false)
-
+  const [copied, setCopied] = useState(false);
+  const router = useRouter();
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="container mx-auto py-10 px-4">
@@ -373,7 +374,8 @@ const myScenario: EVMScenario = {
           <ol>
             <li>Launch the EVM Visualizer</li>
             <li>
-              Click the &quot;Create Custom Scenario&quot; button in the top toolbar
+              Click the &quot;Create Custom Scenario&quot; button in the top
+              toolbar
             </li>
             <li>Fill in the basic information and transaction details</li>
             <li>
@@ -387,7 +389,7 @@ const myScenario: EVMScenario = {
             <Card className="mb-6">
               <CardContent className="p-4">
                 <img
-                  src="/placeholder.svg?height=300&width=800"
+                  src="https://img.freepik.com/vecteurs-libre/style-dechire-arrive-bientot-modele-promotion-pour-post-reseaux-sociaux_1017-55783.jpg"
                   alt="Scenario Builder UI"
                   className="w-full rounded-md"
                 />
@@ -456,8 +458,9 @@ const myScenario: EVMScenario = {
             <li>
               Submit a pull request to the{" "}
               <a
-                href="https://github.com/yourusername/evm-visualizer"
+                href="https://github.com/All-Khwarizmi/evm-visualization"
                 className="text-purple-600 dark:text-purple-400"
+                target="blank"
               >
                 EVM Visualizer repository
               </a>
@@ -473,8 +476,9 @@ const myScenario: EVMScenario = {
           <p>
             For more detailed contribution guidelines, see our{" "}
             <a
-              href="/docs/contributing"
+              href="https://github.com/All-Khwarizmi/evm-visualization/blob/master/CONTRIBUTING.md"
               className="text-purple-600 dark:text-purple-400"
+              target="blank"
             >
               Contributing Guide
             </a>
@@ -507,18 +511,21 @@ const myScenario: EVMScenario = {
           </p>
 
           <div className="not-prose mt-10 flex items-center justify-between">
-            <Button asChild variant="outline">
-              <Link href="/docs/examples">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Examples
-              </Link>
+            <Button
+              onClick={() => {
+                router.back();
+              }}
+              variant="outline"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Go Back
             </Button>
-            <Button asChild>
+            {/* <Button asChild>
               <Link href="/docs/examples/flash-loan">
                 Next: Flash Loan Example
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
@@ -542,6 +549,5 @@ function Check(props: React.SVGProps<SVGSVGElement>) {
     >
       <polyline points="20 6 9 17 4 12" />
     </svg>
-  )
+  );
 }
-
