@@ -5,8 +5,14 @@ import { Button } from "@/components/ui/button";
 
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
+export function isBrowser() {
+  return typeof window !== "undefined";
+}
 
 export default function GettingStartedPage() {
+  if (!isBrowser()) {
+    return null;
+  }
   const dashboardUrl = `${window.location.protocol}//${window.location.host}/dashboard`;
   return (
     <div className="container mx-auto py-10 px-4">
