@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   ChevronRight,
   ChevronLeft,
@@ -18,37 +18,48 @@ import {
   PanelRight,
   PanelRightClose,
   Settings,
-} from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { EVMCanvas } from "@/components/evm-canvas"
-import { TransactionDetails } from "@/components/transaction-details"
-import { StackDetails } from "@/components/stack-details"
-import { MemoryDetails } from "@/components/memory-details"
-import { StorageDetails } from "@/components/storage-details"
-import { WorldStateDetails } from "@/components/world-state-details"
-import { ExecutionDetails } from "@/components/execution-details"
-import { useEVMSimulation } from "@/hooks/use-evm-simulation"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { ScrollableTabs } from "@/components/scrollable-tabs"
-import { TutorialOverlay } from "@/components/tutorial-overlay"
-import { BytecodeExplorer } from "@/components/bytecode-explorer"
-import { TransactionLoader } from "@/components/transaction-loader"
-import { ExecutionSpeedControl } from "@/components/execution-speed-control"
-import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts"
-import { KeyboardShortcutsDialog } from "@/components/keyboard-shortcuts-dialog"
-import { GasProfiler } from "@/components/gas-profiler"
-import { CallStackVisualization } from "@/components/call-stack-visualization"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { ScenarioSelector } from "@/components/scenario-selector"
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { EVMCanvas } from "@/components/evm-canvas";
+import { TransactionDetails } from "@/components/transaction-details";
+import { StackDetails } from "@/components/stack-details";
+import { MemoryDetails } from "@/components/memory-details";
+import { StorageDetails } from "@/components/storage-details";
+import { WorldStateDetails } from "@/components/world-state-details";
+import { ExecutionDetails } from "@/components/execution-details";
+import { useEVMSimulation } from "@/hooks/use-evm-simulation";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { ScrollableTabs } from "@/components/scrollable-tabs";
+import { TutorialOverlay } from "@/components/tutorial-overlay";
+import { BytecodeExplorer } from "@/components/bytecode-explorer";
+import { TransactionLoader } from "@/components/transaction-loader";
+import { ExecutionSpeedControl } from "@/components/execution-speed-control";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
+import { KeyboardShortcutsDialog } from "@/components/keyboard-shortcuts-dialog";
+import { GasProfiler } from "@/components/gas-profiler";
+import { CallStackVisualization } from "@/components/call-stack-visualization";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ScenarioSelector } from "@/components/scenario-selector";
+import {
+  defaultCallStack,
+  defaultOpcodeGasCosts,
+} from "@/constants/evm-simulation-data";
 
-export default function EVMVisualizationDashboard() { 
-  const [activeTab, setActiveTab] = useState("transaction")
-  const [isPanelOpen, setIsPanelOpen] = useState(true)
-  const [executionSpeed, setExecutionSpeed] = useState(1000) // Default 1 second
+export default function EVMVisualizationDashboard() {
+  const [activeTab, setActiveTab] = useState("transaction");
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [executionSpeed, setExecutionSpeed] = useState(1000); // Default 1 second
 
   const {
     currentStep,
@@ -71,37 +82,17 @@ export default function EVMVisualizationDashboard() {
     setExecutionInterval,
     loadScenario,
     currentScenario,
-  } = useEVMSimulation()
+  } = useEVMSimulation();
 
-  // Sample call stack data (in a real app, this would come from the simulation)
-  const sampleCallStack = [
-    {
-      type: "CALL" as const,
-      from: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-      to: "0x1234567890123456789012345678901234567890",
-      value: "0.1",
-      gasLimit: 21000,
-      depth: 0,
-    },
-  ]
-
-  // Sample opcode gas costs (in a real app, this would be calculated from execution)
-  const sampleOpcodeGasCosts = [
-    { opcode: "PUSH1", gas: 3 },
-    { opcode: "MSTORE", gas: 3 },
-    { opcode: "CALLVALUE", gas: 2 },
-    { opcode: "JUMPI", gas: 10 },
-    { opcode: "SSTORE", gas: 20000 },
-  ]
-
+  
   // Handle play/pause toggle
   const togglePlayPause = () => {
     if (isRunning) {
-      pauseSimulation()
+      pauseSimulation();
     } else {
-      startSimulation()
+      startSimulation();
     }
-  }
+  };
 
   // Set up keyboard shortcuts
   useKeyboardShortcuts({
@@ -109,42 +100,42 @@ export default function EVMVisualizationDashboard() {
     onStepBackward: stepBackward,
     onPlayPause: togglePlayPause,
     onReset: resetSimulation,
-  })
+  });
 
   // Update execution speed when changed
   useEffect(() => {
-    setExecutionInterval(executionSpeed)
-  }, [executionSpeed, setExecutionInterval])
+    setExecutionInterval(executionSpeed);
+  }, [executionSpeed, setExecutionInterval]);
 
   // Function to display step description
   const getStepDescription = () => {
     switch (currentStep) {
       case 0:
-        return "Ready to start execution"
+        return "Ready to start execution";
       case 1:
-        return "Transaction initiated, pushing value to stack"
+        return "Transaction initiated, pushing value to stack";
       case 2:
-        return "Second value pushed to stack"
+        return "Second value pushed to stack";
       case 3:
-        return "Storing value from stack to memory"
+        return "Storing value from stack to memory";
       case 4:
-        return "Reading transaction value"
+        return "Reading transaction value";
       case 5:
-        return "Conditional check on stack"
+        return "Conditional check on stack";
       case 6:
-        return "Storing value to persistent storage"
+        return "Storing value to persistent storage";
       case 7:
-        return "Updating world state with new values"
+        return "Updating world state with new values";
       case 8:
-        return "Additional storage update"
+        return "Additional storage update";
       case 9:
-        return "Finalizing transaction, transferring value"
+        return "Finalizing transaction, transferring value";
       case 10:
-        return "Transaction completed, state committed"
+        return "Transaction completed, state committed";
       default:
-        return "Unknown step"
+        return "Unknown step";
     }
-  }
+  };
 
   return (
     <div className="flex flex-col h-screen">
@@ -186,16 +177,26 @@ export default function EVMVisualizationDashboard() {
                 </SheetHeader>
                 <div className="py-4 space-y-4">
                   <div className="grid gap-4">
-                    <Button variant="outline" size="sm" className="justify-start">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="justify-start"
+                    >
                       <Info className="h-4 w-4 mr-2" />
                       About
                     </Button>
-                    <Button variant="outline" size="sm" className="justify-start">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="justify-start"
+                    >
                       <Code className="h-4 w-4 mr-2" />
                       Examples
                     </Button>
                     <div className="pt-4 border-t">
-                      <h3 className="text-sm font-medium mb-3">Transaction Settings</h3>
+                      <h3 className="text-sm font-medium mb-3">
+                        Transaction Settings
+                      </h3>
                       <TransactionLoader onLoadTransaction={setTransaction} />
                     </div>
                   </div>
@@ -215,7 +216,9 @@ export default function EVMVisualizationDashboard() {
                 <SheetContent>
                   <SheetHeader>
                     <SheetTitle>Settings</SheetTitle>
-                    <SheetDescription>Configure the EVM visualization</SheetDescription>
+                    <SheetDescription>
+                      Configure the EVM visualization
+                    </SheetDescription>
                   </SheetHeader>
                   <div className="py-4 space-y-4">
                     <TransactionLoader onLoadTransaction={setTransaction} />
@@ -224,7 +227,10 @@ export default function EVMVisualizationDashboard() {
               </Sheet>
 
               {/* Add the ScenarioSelector here */}
-              <ScenarioSelector onSelectScenario={loadScenario} currentScenario={currentScenario} />
+              <ScenarioSelector
+                onSelectScenario={loadScenario}
+                currentScenario={currentScenario}
+              />
 
               <Button variant="outline" size="sm">
                 <Info className="h-4 w-4 mr-2" />
@@ -243,14 +249,21 @@ export default function EVMVisualizationDashboard() {
       {/* Current Step Description */}
       <div className="bg-slate-100 dark:bg-slate-900 py-2 px-4 border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto">
-          <div className="text-sm font-medium text-slate-700 dark:text-slate-300">{getStepDescription()}</div>
+          <div className="text-sm font-medium text-slate-700 dark:text-slate-300">
+            {getStepDescription()}
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Main Canvas */}
-        <div className={cn("flex-1 overflow-hidden transition-all duration-300", isPanelOpen ? "mr-0" : "mr-0")}>
+        <div
+          className={cn(
+            "flex-1 overflow-hidden transition-all duration-300",
+            isPanelOpen ? "mr-0" : "mr-0"
+          )}
+        >
           <EVMCanvas
             transaction={transaction}
             stack={stack}
@@ -284,10 +297,14 @@ export default function EVMVisualizationDashboard() {
         <div
           className={cn(
             "border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 overflow-y-auto transition-all duration-300 ease-in-out",
-            isPanelOpen ? "w-96 opacity-100" : "w-0 opacity-0 overflow-hidden",
+            isPanelOpen ? "w-96 opacity-100" : "w-0 opacity-0 overflow-hidden"
           )}
         >
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
             <div className="border-b border-slate-200 dark:border-slate-800">
               <ScrollableTabs>
                 <TabsList className="justify-start rounded-none border-b-0 bg-transparent p-0">
@@ -366,15 +383,30 @@ export default function EVMVisualizationDashboard() {
               <WorldStateDetails worldState={worldState} />
             </TabsContent>
             <TabsContent value="execution" className="p-4">
-              <ExecutionDetails currentOpcode={currentOpcode} gasUsed={gasUsed} gasRemaining={gasRemaining} />
+              <ExecutionDetails
+                currentOpcode={currentOpcode}
+                gasUsed={gasUsed}
+                gasRemaining={gasRemaining}
+              />
             </TabsContent>
             <TabsContent value="bytecode" className="p-4">
-              <BytecodeExplorer bytecode={transaction.data} currentOpcode={currentOpcode} currentStep={currentStep} />
+              <BytecodeExplorer
+                bytecode={transaction.data}
+                currentOpcode={currentOpcode}
+                currentStep={currentStep}
+              />
             </TabsContent>
             <TabsContent value="advanced" className="p-4">
               <div className="space-y-4">
-                <GasProfiler gasUsed={gasUsed} gasLimit={transaction.gasLimit} opcodeGasCosts={sampleOpcodeGasCosts} />
-                <CallStackVisualization callStack={sampleCallStack} currentDepth={0} />
+                <GasProfiler
+                  gasUsed={gasUsed}
+                  gasLimit={transaction.gasLimit}
+                  opcodeGasCosts={defaultOpcodeGasCosts}
+                />
+                <CallStackVisualization
+                  callStack={defaultCallStack}
+                  currentDepth={0}
+                />
               </div>
             </TabsContent>
           </Tabs>
@@ -389,14 +421,27 @@ export default function EVMVisualizationDashboard() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" onClick={resetSimulation}>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={resetSimulation}
+                    >
                       <RotateCcw className="h-4 w-4" />
                     </Button>
-                    <Button variant="outline" size="icon" onClick={stepBackward} disabled={currentStep === 0}>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={stepBackward}
+                      disabled={currentStep === 0}
+                    >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
                     {isRunning ? (
-                      <Button variant="outline" size="icon" onClick={pauseSimulation}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={pauseSimulation}
+                      >
                         <Pause className="h-4 w-4" />
                       </Button>
                     ) : (
@@ -409,19 +454,28 @@ export default function EVMVisualizationDashboard() {
                         <Play className="h-4 w-4" />
                       </Button>
                     )}
-                    <Button variant="outline" size="icon" onClick={stepForward} disabled={currentStep === totalSteps}>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={stepForward}
+                      disabled={currentStep === totalSteps}
+                    >
                       <ChevronRight className="h-4 w-4" />
                     </Button>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-sm text-slate-500 dark:text-slate-400">
-                      Opcode: <span className="font-mono">{currentOpcode || "N/A"}</span>
+                      Opcode:{" "}
+                      <span className="font-mono">
+                        {currentOpcode || "N/A"}
+                      </span>
                     </div>
                     <div className="text-sm text-slate-500 dark:text-slate-400">
                       Gas Used: <span className="font-mono">{gasUsed}</span>
                     </div>
                     <div className="text-sm text-slate-500 dark:text-slate-400">
-                      Gas Remaining: <span className="font-mono">{gasRemaining}</span>
+                      Gas Remaining:{" "}
+                      <span className="font-mono">{gasRemaining}</span>
                     </div>
                   </div>
                 </div>
@@ -434,6 +488,5 @@ export default function EVMVisualizationDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
