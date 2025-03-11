@@ -1,93 +1,68 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Calendar, Clock, Search, Tag, User } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowRight, Calendar, Clock, Search, Tag, User } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-// Sample blog posts
 const blogPosts = [
   {
-    id: "understanding-evm-execution",
-    title: "Understanding EVM Execution: A Deep Dive",
+    id: "introducing-evm-visualizer",
+    title:
+      "Introducing EVM Visualizer: Making Ethereum's Virtual Machine Visible",
     excerpt:
-      "Explore the inner workings of the Ethereum Virtual Machine and how it executes smart contract code step by step.",
-    author: "Alex Johnson",
-    date: "2023-05-15",
-    readTime: "8 min read",
-    tags: ["EVM", "Smart Contracts", "Ethereum"],
-    category: "technical",
-  },
-  {
-    id: "gas-optimization-techniques",
-    title: "Advanced Gas Optimization Techniques for Smart Contracts",
-    excerpt:
-      "Learn how to optimize your smart contracts to reduce gas costs and improve efficiency on the Ethereum network.",
-    author: "Samantha Lee",
-    date: "2023-06-22",
-    readTime: "12 min read",
-    tags: ["Gas Optimization", "Smart Contracts", "Solidity"],
-    category: "technical",
-  },
-  {
-    id: "visualizing-defi-transactions",
-    title: "Visualizing DeFi Transactions: Uniswap Swaps Explained",
-    excerpt: "A visual breakdown of what happens under the hood when you perform a token swap on Uniswap.",
-    author: "Michael Chen",
-    date: "2023-07-10",
-    readTime: "10 min read",
-    tags: ["DeFi", "Uniswap", "Visualization"],
-    category: "defi",
-  },
-  {
-    id: "evm-for-beginners",
-    title: "EVM for Beginners: Understanding the Basics",
-    excerpt: "A beginner-friendly introduction to the Ethereum Virtual Machine and how it powers smart contracts.",
-    author: "Emily Rodriguez",
-    date: "2023-08-05",
+      "An interactive tool that lets you see inside the Ethereum Virtual Machine, visualizing how transactions and smart contracts execute.",
+    author: "EVM Visualizer Team",
+    date: "March 11, 2025",
     readTime: "6 min read",
-    tags: ["EVM", "Beginners", "Ethereum"],
-    category: "educational",
+    tags: ["EVM", "Ethereum", "Visualization", "Launch", "AI Coding"],
+    category: "announcements",
   },
-  {
-    id: "debugging-smart-contracts",
-    title: "Debugging Smart Contracts with EVM Visualizer",
-    excerpt: "Learn how to use the EVM Visualizer to debug and understand complex smart contract interactions.",
-    author: "David Kim",
-    date: "2023-09-18",
-    readTime: "9 min read",
-    tags: ["Debugging", "Smart Contracts", "Tools"],
-    category: "technical",
-  },
-]
+];
 
 export default function BlogPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Filter blog posts based on search term and category
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-    const matchesCategory = selectedCategory === "all" || post.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
+      post.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    const matchesCategory =
+      selectedCategory === "all" || post.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   // Get unique categories
-  const categories = ["all", ...Array.from(new Set(blogPosts.map((post) => post.category)))]
+  const categories = [
+    "all",
+    ...Array.from(new Set(blogPosts.map((post) => post.category))),
+  ];
 
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">EVM Visualizer Blog</h1>
+          <h1 className="text-4xl font-bold tracking-tight mb-4">
+            EVM Visualizer Blog
+          </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Insights, tutorials, and deep dives into Ethereum Virtual Machine concepts and smart contract development.
+            Insights, tutorials, and deep dives into Ethereum Virtual Machine
+            concepts and smart contract development.
           </p>
         </div>
 
@@ -101,10 +76,18 @@ export default function BlogPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full sm:w-auto">
+          <Tabs
+            value={selectedCategory}
+            onValueChange={setSelectedCategory}
+            className="w-full sm:w-auto"
+          >
             <TabsList>
               {categories.map((category) => (
-                <TabsTrigger key={category} value={category} className="capitalize">
+                <TabsTrigger
+                  key={category}
+                  value={category}
+                  className="capitalize"
+                >
                   {category}
                 </TabsTrigger>
               ))}
@@ -118,7 +101,9 @@ export default function BlogPage() {
               <Card key={post.id}>
                 <CardHeader>
                   <CardTitle className="text-2xl">{post.title}</CardTitle>
-                  <CardDescription className="mt-2">{post.excerpt}</CardDescription>
+                  <CardDescription className="mt-2">
+                    {post.excerpt}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
@@ -159,7 +144,9 @@ export default function BlogPage() {
             ))
           ) : (
             <div className="text-center py-8">
-              <p className="text-slate-500 dark:text-slate-400">No articles found matching your criteria.</p>
+              <p className="text-slate-500 dark:text-slate-400">
+                No articles found matching your criteria.
+              </p>
             </div>
           )}
         </div>
@@ -171,6 +158,5 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
