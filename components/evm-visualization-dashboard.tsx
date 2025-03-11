@@ -55,6 +55,8 @@ import {
   defaultCallStack,
   defaultOpcodeGasCosts,
 } from "@/constants/evm-simulation-data";
+import Link from "next/link";
+import AppLogo from "./icons/app-logo";
 
 export default function EVMVisualizationDashboard() {
   const [activeTab, setActiveTab] = useState("transaction");
@@ -84,7 +86,6 @@ export default function EVMVisualizationDashboard() {
     currentScenario,
   } = useEVMSimulation();
 
-  
   // Handle play/pause toggle
   const togglePlayPause = () => {
     if (isRunning) {
@@ -146,8 +147,11 @@ export default function EVMVisualizationDashboard() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-4">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Cpu className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-            <h1 className="text-xl font-bold">EVM Visualizer</h1>
+            <Link href="/" className="flex items-center gap-2">
+              <AppLogo />
+
+              <h1 className="text-xl font-bold">EVM Visualizer</h1>
+            </Link>
           </div>
 
           {/* Step Badge - Always visible */}
